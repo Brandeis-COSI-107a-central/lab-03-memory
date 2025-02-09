@@ -216,9 +216,6 @@ There&rsquo;s a quick fix using the argument to the crash function. Can you see 
 > 
 
 
-hi there
-
-
 ## Sizes of numbers in memory
 
 We have mentioned in class that different numeric types may be represented with different numbers of bits. Let&rsquo;s find out how big each kind is. C has an operator `sizeof` that tells us the size in bytes of a data type. For example, `sizeof(int)` tells us how big an integer is.
