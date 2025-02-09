@@ -18,3 +18,12 @@ test-list-addresses: list-addresses
 
 test-print-sizes: print-sizes
 	./print-sizes | diff - test-data/print-sizes-test.txt
+
+clean:
+	rm -f print-addresses print-low print-byte1 list-addresses print-sizes
+
+# Remove C source files that students are expected to create
+
+distclean:
+	rm -f print-addresses.c print-low.c print-byte1.c list-addresses.c \
+		print-sizes.c
