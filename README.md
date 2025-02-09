@@ -215,3 +215,95 @@ There&rsquo;s a quick fix using the argument to the crash function. Can you see 
 > -   [ ] Programs that don&rsquo;t use very much memory
 > 
 
+
+hi there
+
+
+## Sizes of numbers in memory
+
+We have mentioned in class that different numeric types may be represented with different numbers of bits. Let&rsquo;s find out how big each kind is. C has an operator `sizeof` that tells us the size in bytes of a data type. For example, `sizeof(int)` tells us how big an integer is.
+
+We&rsquo;ll focus here on integer types and pointers, since that&rsquo;s mostly what we talk about in this class.
+
+An interesting point is that the C standard specifies minimum sizes for integer types, but not exactly what they are or how big they might be. The only guarantees are that `long long` is not smaller than `long`, `long` is not smaller than `int`, and `int` is not smaller than `short.`
+
+The GNU C library, which is the C library implementation used on Linux systems, defines signed and unsigned integer types of specific sizes in the header file `stdint.h`. They are:
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Number of bits</th>
+<th scope="col" class="org-left">Signed</th>
+<th scope="col" class="org-left">Unsigned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">8</td>
+<td class="org-left"><code>int8_t</code></td>
+<td class="org-left"><code>uint8_t</code></td>
+</tr>
+
+<tr>
+<td class="org-right">16</td>
+<td class="org-left"><code>int16_t</code></td>
+<td class="org-left"><code>uint16_t</code></td>
+</tr>
+
+<tr>
+<td class="org-right">32</td>
+<td class="org-left"><code>int32_t</code></td>
+<td class="org-left"><code>uint32_t</code></td>
+</tr>
+
+<tr>
+<td class="org-right">32</td>
+<td class="org-left"><code>int64_t</code></td>
+<td class="org-left"><code>uint64_t</code></td>
+</tr>
+</tbody>
+</table>
+
+We use these sometimes when we want to be very precise about the integer type we want, and how many bytes it should be. For example, it&rsquo;s usually better to use `uint8_t` for a unsigned byte value than `char` because `char` might not be treated as an unsigned 8-bit value. On the other hand, you may come across existing code that assumes that, and sometimes it might be possible to exploit that in an attack!
+
+Reminders:
+
+-   the type of a pointer is written like `int \ast` to mean &ldquo;pointer to integer.&rdquo;
+-   use the `&` prefix operator to get a pointer to a variable. This even works for functions!
+
+> Program 5. Write a C program called `print-sizes` that does the following (you can choose the names of any variables unless specified):
+> 
+> 1.  Declare an integer variable with a value of `978`.
+> 2.  Declare an integer pointer variable.
+> 3.  Declare a character array variable with size 200.
+> 4.  Declare a character pointer variable.
+> 5.  Print a table of the sizes of the following types on your system: `char`, `short`, `int`, `long`, `long long`, `float`, `double`, `char \ast`,  `int \ast`, `long \ast`, in that order. Each output line should look like:
+>     
+>         The size of int is 47
+>     
+>     (with the correct size, which is not 47!).
+> 
+> 6.  Print the message `The size of my character array is <size>` with the `<size` filled in by calling `sizeof`.
+> 7.  Set the character pointer to point to your character array.
+> 8.  Print the message `The size of my character pointer is <size>`, filling in the `<size>` of the pointer with `sizeof.`
+> 9.  Set the integer pointer variable to point at the your integer variable.
+> 10. Print the message `The size of my int pointer is <size>`, filling in the `<size>` of the pointer with `sizeof` using the name of your integer pointer variable.
+> 11. Print the message `The size of what my integer pointer points at is <size>`, filling in `<size>` from an appropriate expression.
+> 
+
+> Question 22. What do you notice about the sizes of pointers?  Why do you think that is?
+> 
+
+
+> Question 23. Are the sizes of your integer pointer variable and what it points at the same or different? Why do you think that is?
+> 
+
